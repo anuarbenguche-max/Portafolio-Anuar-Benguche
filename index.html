@@ -37,14 +37,14 @@
       color: var(--text);
       line-height: 1.6;
       overflow-x: hidden;
-      letter-spacing: 0.3px;
+      letter-spacing: 0.3px; /* Espaciado de letras base */
     }
 
-    /* Reset de enlaces para evitar subrayados */
+    /* ELIMINAR SUBRAYADOS GLOBALES */
     a { text-decoration: none !important; color: inherit; outline: none; }
 
     /* ==========================================================================
-       2. ESTRUCTURA Y BOTONES
+       2. COMPONENTES Y BOTONES (KERNING CORREGIDO)
        ========================================================================== */
     .page { width: min(1200px, calc(100% - 40px)); margin: 0 auto; }
 
@@ -53,10 +53,10 @@
       min-height: 52px; padding: 0 30px; border-radius: var(--radius);
       background: var(--accent); color: white !important;
       font-weight: 700; text-transform: uppercase; font-size: 0.85rem;
-      letter-spacing: 1.5px; /* Kerning Xbox */
+      letter-spacing: 1.5px; /* Kerning Xbox premium */
       border: 1px solid transparent; cursor: pointer;
       transition: all 0.25s ease;
-      font-family: inherit; /* Asegura que use Segoe UI */
+      font-family: inherit;
     }
 
     .button:hover { background: #1db21d; transform: translateY(-2px); box-shadow: 0 10px 25px var(--accent-glow); }
@@ -73,7 +73,7 @@
     }
     .nav { display: flex; align-items: center; justify-content: space-between; min-height: 85px; }
     .brand { display: flex; align-items: center; gap: 14px; font-weight: 800; text-transform: uppercase; font-size: 0.95rem; letter-spacing: 1.5px; }
-    .brand img { width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--line); }
+    .brand img { width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--line); object-fit: cover; }
     .nav-links { display: flex; gap: 30px; font-weight: 600; font-size: 0.9rem; color: var(--muted); }
     .nav-links a:hover { color: var(--accent-2); }
 
@@ -203,7 +203,7 @@
   <header class="topbar">
     <nav class="page nav">
       <div class="brand">
-        <img src="assets/anuar-icon.jpg" alt="Logo">
+        <img src="Perfil.png.png" alt="Logo">
         <span>Anuar Benguche</span>
       </div>
       <div class="nav-links">
@@ -231,7 +231,7 @@
         </div>
       </div>
       <aside class="profile-card">
-        <img src=https://github.com/anuarbenguche-max/Portafolio-Anuar-Benguche/blob/main/Profile%20Picture.png?raw=true alt="Anuar Benguche">
+        <img src="Perfil.png.png" alt="Anuar Benguche">
       </aside>
     </section>
 
@@ -376,10 +376,12 @@
       const container = document.getElementById('client-container');
       container.innerHTML = rows.filter(r => r[0]).map(c => `
         <div class="brand-tile">
-          <div class="brand-logo-container"><img src="${c[1] || 'assets/anuar-icon.jpg'}" alt="Logo"></div>
+          <div class="brand-logo-container">
+             <img src="${c[1] || 'Perfil.png.png'}" alt="Logo">
+          </div>
           <h4>${c[0]}</h4>
           <span>${c[2] || 'Servicio'}</span>
-          ${c[4] ? `<a href="${c[4]}" target="_blank" class="button small">Ver Proyecto</a>` : ''}
+          ${c[4] ? `<a href="${c[4]}" target="_blank" class="button small" style="min-height:30px; margin-top:15px;">Ver Proyecto</a>` : ''}
         </div>
       `).join('');
     }
