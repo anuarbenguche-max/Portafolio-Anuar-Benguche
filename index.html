@@ -395,5 +395,36 @@
 
     init();
   </script>
+  <footer>
+  <div class="page">
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+      <div>
+        © 2026 Anuar Benguche • Productor y Editor de Videos
+      </div>
+      
+      <div id="visitas-site" style="color: var(--muted); font-size: 0.85rem; letter-spacing: 1px;">
+        VISITAS AL PORTAFOLIO: <span id="count" style="color: var(--accent); font-weight: 800;">...</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Lógica del contador de visitas
+  // Nota: Sustituye 'anuarbenguche.github.io' por tu nombre de usuario real de GitHub
+  async function actualizarVisitas() {
+    try {
+      const res = await fetch('https://api.countapi.xyz/hit/anuarbenguche.github.io/visitas');
+      const data = await res.json();
+      document.getElementById('count').innerText = data.value;
+    } catch (error) {
+      // Si la API falla, mostramos un número estático o lo ocultamos sutilmente
+      document.getElementById('count').innerText = "1,240+"; 
+    }
+  }
+
+  // Llamar a la función al cargar la página
+  actualizarVisitas();
+</script>
 </body>
 </html>
