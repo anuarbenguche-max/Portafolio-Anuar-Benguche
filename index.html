@@ -237,24 +237,20 @@
 
     <section class="services-section" id="servicios">
       <h2 style="font-size: 2.5rem; font-weight: 800; text-align: center; letter-spacing: -1px; margin-bottom: 10px;">Servicios</h2>
-     <div class="services-grid">
-  
-  <div class="service-card">
-    <h3 style="color: var(--accent); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px;">Edición de Video</h3>
-    <p>Convierto tus grabaciones en videos que la gente realmente quiere ver. Me encargo de cortar las partes aburridas, mejorar el color y dejar el audio impecable para que tu mensaje destaque.</p>
-  </div>
-
-  <div class="service-card">
-    <h3 style="color: var(--accent); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px;">Contenido Digital</h3>
-    <p>Creo las fotografías y las imágenes que tu marca necesita para verse profesional en internet. Hago que tus redes sociales llamen la atención correcta desde el primer vistazo.</p>
-  </div>
-
-  <div class="service-card">
-    <h3 style="color: var(--accent); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px;">Web & Sistemas</h3>
-    <p>Le doy a tu negocio su propia casa en internet. Armo páginas web modernas, seguras y súper fáciles de usar para que tus clientes te encuentren sin complicaciones.</p>
-  </div>
-
-</div>
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>Producción y Edición de Video</h3>
+          <p>MMe encargo de todo el proceso: desde la grabación y dirección hasta convertir tus tomas en videos que la gente realmente quiere ver. Corto las partes aburridas, mejoro el color y dejo el audio impecable para que tu mensaje destaque.</p>
+        </div>
+        <div class="service-card">
+          <h3>Contenido Digital</h3>
+          <p>Estrategia visual completa: fotografía y diseño de artes para potenciar marcas modernas en entornos digitales.</p>
+        </div>
+        <div class="service-card">
+          <h3>Web & Sistemas</h3>
+          <p>Diseño y administración de plataformas web con interfaces intuitivas y estética tecnológica de vanguardia.</p>
+        </div>
+      </div>
     </section>
 
     <section class="portfolio-section" id="portafolio">
@@ -300,32 +296,11 @@
     </section>
 
   </main>
-<footer style="border-top: 1px solid var(--line); padding: 26px 0; color: var(--muted); font-size: 0.85rem; letter-spacing: 1px;">
-  <div class="page">
-    <div style="display: flex; justify-content: center; align-items: center; gap: 12px; flex-wrap: wrap; text-transform: uppercase;">
-      <span>&copy; 2026 ANUAR BENGUCHE</span>
-      <span style="color: var(--line);">|</span>
-      <span>VALLE DE ÁNGELES, HONDURAS</span>
-      <span style="color: var(--line);">|</span>
-      <div style="display: flex; gap: 6px;">
-        VISITAS: <span id="count" style="color: var(--accent); font-weight: 800;">...</span>
-      </div>
-    </div>
-  </div>
-</footer>
 
-<script>
-  async function actualizarVisitas() {
-    try {
-      const res = await fetch('https://api.countapi.xyz/hit/anuarbenguche.github.io/visitas');
-      const data = await res.json();
-      document.getElementById('count').innerText = data.value.toLocaleString(); 
-    } catch (error) {
-      document.getElementById('count').innerText = "1,240+"; 
-    }
-  }
-  actualizarVisitas();
-</script>
+  <footer style="padding: 50px 0; text-align: center; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.85rem; font-weight: 600; letter-spacing: 1.5px;">
+    &copy; 2026 ANUAR BENGUCHE | VALLE DE ÁNGELES, HONDURAS.
+  </footer>
+
   <script>
     const VIDEOS_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQgCJoKmx5QdAm9Jz5NRt8QThDCVMtGu_cOUdBHe04h_qPIu49Ytwox57L48QmcVbF2822nE0RBO11J/pub?gid=665574915&single=true&output=csv";
     const CLIENTES_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQgCJoKmx5QdAm9Jz5NRt8QThDCVMtGu_cOUdBHe04h_qPIu49Ytwox57L48QmcVbF2822nE0RBO11J/pub?gid=262329438&single=true&output=csv";
