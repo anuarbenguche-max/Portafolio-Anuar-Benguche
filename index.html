@@ -135,7 +135,6 @@
     .yt-thumb { aspect-ratio: 16/9; background-size: cover; background-position: center; cursor: pointer; display: flex; align-items: center; justify-content: center; }
     .yt-thumb::before { content: "▶"; width: 55px; height: 55px; background: rgba(0,0,0,0.85); border: 2px solid white; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; }
     
-    /* Etiqueta flotante de red social (NUEVO) */
     .platform-badge {
       position: absolute;
       top: 15px;
@@ -154,7 +153,6 @@
       backdrop-filter: blur(10px);
     }
 
-    /* Miniaturas compactas de redes sociales */
     .social-thumb {
       height: 320px;
       display: flex;
@@ -164,7 +162,6 @@
       cursor: pointer;
     }
     
-    /* Botón Play Premium y Animado */
     .play-btn {
       width: 65px;
       height: 65px;
@@ -177,13 +174,12 @@
       color: var(--accent);
       font-size: 24px;
       font-weight: 900;
-      padding-left: 5px; /* Compensa visualmente la forma del triángulo */
+      padding-left: 5px; 
       box-shadow: 0 0 20px var(--accent-glow);
       transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       z-index: 5;
     }
     
-    /* Efecto Hover aplicado al contenedor para animar el botón */
     .media-container:hover .play-btn {
       transform: scale(1.15);
       background: var(--accent);
@@ -259,11 +255,12 @@
       <div class="brand">
         <img src="Perfil.png.png" alt="Logo">
         <span>Anuar Benguche</span>
+        <button id="lang-toggle" onclick="toggleLanguage()" class="button secondary" style="min-height: 26px; padding: 0 10px; font-size: 0.65rem; margin-left: 10px; border-radius: 6px;">EN</button>
       </div>
       <div class="nav-links">
-        <a href="#servicios">Servicios</a>
-        <a href="#portafolio">Portafolio</a>
-        <a href="#contacto">Contacto</a>
+        <a href="#servicios" data-i18n="nav_services">Servicios</a>
+        <a href="#portafolio" data-i18n="nav_portfolio">Portafolio</a>
+        <a href="#contacto" data-i18n="nav_contact">Contacto</a>
       </div>
     </nav>
   </header>
@@ -273,15 +270,15 @@
     <section class="hero">
       <div>
         <span class="subtle-name">Anuar Benguche</span>
-        <h1>Productor y <span class="accent-text">Editor de Videos</span></h1>
-        <p class="lead">Producción audiovisual integral para marcas y redes sociales. Especialista en narrativa visual, edición profesional y plataformas digitales de alto impacto.</p>
+        <h1><span data-i18n="hero_title_1">Productor y</span> <span class="accent-text" data-i18n="hero_title_2">Editor de Videos</span></h1>
+        <p class="lead" data-i18n="hero_lead">Ayudo a marcas y emprendedores a contar sus historias a través de videos y sitios web que atrapan desde el primer segundo. Si tienes una idea, yo me encargo de hacerla realidad: desde la grabación y edición, hasta crear el espacio digital perfecto para que tu audiencia conecte con tu mensaje.</p>
         <div style="display:flex; gap:15px; margin-bottom:45px; flex-wrap:wrap; justify-content: inherit;">
-          <a href="#contacto" class="button">Contactarme</a>
-          <a href="#portafolio" class="button secondary">Explorar Trabajos</a>
+          <a href="#contacto" class="button" data-i18n="hero_btn_contact">Contactarme</a>
+          <a href="#portafolio" class="button secondary" data-i18n="hero_btn_portfolio">Explorar Trabajos</a>
         </div>
         <div class="stats">
-          <div class="stat"><strong id="counter-display">0+</strong><span>Videos</span></div>
-          <div class="stat"><strong>24h</strong><span>Respuesta</span></div>
+          <div class="stat"><strong id="counter-display">0+</strong><span data-i18n="stats_videos">Videos</span></div>
+          <div class="stat"><strong>24h</strong><span data-i18n="stats_response">Respuesta</span></div>
         </div>
       </div>
       <aside class="profile-card">
@@ -290,32 +287,32 @@
     </section>
 
     <section class="services-section" id="servicios">
-      <h2 style="font-size: 2.5rem; font-weight: 800; text-align: center; letter-spacing: -1px; margin-bottom: 10px;">Servicios</h2>
+      <h2 style="font-size: 2.5rem; font-weight: 800; text-align: center; letter-spacing: -1px; margin-bottom: 10px;" data-i18n="section_services">Servicios</h2>
       <div class="services-grid">
         <div class="service-card">
-          <h3>Producción y Edición de Video</h3>
-          <p>Me encargo de todo el proceso: desde la grabación y dirección hasta convertir tus tomas en videos que la gente realmente quiere ver. Corto las partes aburridas, mejoro el color y dejo el audio impecable para que tu mensaje destaque.</p>
+          <h3 data-i18n="srv_1_title">Producción y Edición de Video</h3>
+          <p data-i18n="srv_1_desc">Me encargo de todo el proceso: desde la grabación y dirección hasta convertir tus tomas en videos que la gente realmente quiere ver. Corto las partes aburridas, mejoro el color y dejo el audio impecable para que tu mensaje destaque.</p>
         </div>
         <div class="service-card">
-          <h3>Contenido Digital</h3>
-          <p>Creo las fotografías y las imágenes que tu marca necesita para verse profesional en internet. Hago que tus redes sociales llamen la atención correcta desde el primer vistazo.</p>
+          <h3 data-i18n="srv_2_title">Contenido Digital</h3>
+          <p data-i18n="srv_2_desc">Creo las fotografías y las imágenes que tu marca necesita para verse profesional en internet. Hago que tus redes sociales llamen la atención correcta desde el primer vistazo.</p>
         </div>
         <div class="service-card">
-          <h3>Web & Sistemas</h3>
-          <p>Le doy a tu negocio su propia casa en internet. Armo páginas web modernas, seguras y súper fáciles de usar para que tus clientes te encuentren sin complicaciones.</p>
+          <h3 data-i18n="srv_3_title">Web & Sistemas</h3>
+          <p data-i18n="srv_3_desc">Le doy a tu negocio su propia casa en internet. Armo páginas web modernas, seguras y súper fáciles de usar para que tus clientes te encuentren sin complicaciones.</p>
         </div>
       </div>
     </section>
 
     <section class="portfolio-section" id="portafolio">
       <div class="section-head">
-        <h2>Mi Portafolio</h2>
-        <p>Esta es solo una selección de algunos de mis proyectos. Aunque he editado y producido una gran cantidad de videos a lo largo de mi carrera que no están incluidos aquí, esta muestra sirve para ilustrar mi estilo, narrativa visual y enfoque técnico.</p>
+        <h2 data-i18n="section_portfolio">Mi Portafolio</h2>
+        <p data-i18n="portfolio_desc">Esta es solo una selección de algunos de mis proyectos. Aunque he editado y producido una gran cantidad de videos a lo largo de mi carrera que no están incluidos aquí, esta muestra sirve para ilustrar mi estilo, narrativa visual y enfoque técnico.</p>
       </div>
 
       <div class="tabs-nav">
-        <button class="tab-btn active" onclick="toggleTab('videos', this)">Videos Destacados</button>
-        <button class="tab-btn" onclick="toggleTab('clientes', this)">Clientes & Proyectos</button>
+        <button class="tab-btn active" onclick="toggleTab('videos', this)" data-i18n="tab_videos">Videos Destacados</button>
+        <button class="tab-btn" onclick="toggleTab('clientes', this)" data-i18n="tab_clients">Clientes & Proyectos</button>
       </div>
 
       <div id="tab-videos" class="tab-content active">
@@ -329,29 +326,29 @@
     </section>
 
     <section class="contact-section" id="contacto">
-      <h2 style="font-size: 2.8rem; font-weight: 800; margin-bottom: 15px; letter-spacing: -1px;">Hablemos de tu proyecto</h2>
+      <h2 style="font-size: 2.8rem; font-weight: 800; margin-bottom: 15px; letter-spacing: -1px;" data-i18n="section_contact">Hablemos de tu proyecto</h2>
       <div class="contact-grid">
         <div class="contact-box">
           <h4>WhatsApp</h4>
           <span class="value">+504 8779-0189</span>
-          <a href="https://wa.me/50487790189" target="_blank" class="button small">Abrir WhatsApp</a>
+          <a href="https://wa.me/50487790189" target="_blank" class="button small" data-i18n="contact_wa">Abrir WhatsApp</a>
         </div>
         <div class="contact-box">
           <h4>Correo</h4>
           <span class="value">anuarbenguche@gmail.com</span>
-          <a href="mailto:anuarbenguche@gmail.com" class="button small">Enviar Correo</a>
+          <a href="mailto:anuarbenguche@gmail.com" class="button small" data-i18n="contact_email">Enviar Correo</a>
         </div>
         <div class="contact-box">
           <h4>Discord</h4>
           <span class="value" id="discord-user">Kukuez#8285</span>
-          <button onclick="copyDiscord()" class="button small">Copiar Usuario</button>
+          <button onclick="copyDiscord()" class="button small" data-i18n="contact_discord">Copiar Usuario</button>
         </div>
       </div>
     </section>
 
   </main>
 
-  <footer style="padding: 50px 0; text-align: center; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.85rem; font-weight: 600; letter-spacing: 1.5px;">
+  <footer data-i18n="footer" style="padding: 50px 0; text-align: center; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.85rem; font-weight: 600; letter-spacing: 1.5px;">
     &copy; 2026 ANUAR BENGUCHE | VALLE DE ÁNGELES, HONDURAS.
   </footer>
 
@@ -361,6 +358,90 @@
 
     const LIMIT = 6;
     let vData = [];
+    let currentRowsC = [];
+    let currentPageV = 1;
+    let currentLang = 'es';
+
+    const translations = {
+      es: {
+        nav_services: "Servicios",
+        nav_portfolio: "Portafolio",
+        nav_contact: "Contacto",
+        hero_title_1: "Productor y",
+        hero_title_2: "Editor de Videos",
+        hero_lead: "Ayudo a marcas y emprendedores a contar sus historias a través de videos y sitios web que atrapan desde el primer segundo. Si tienes una idea, yo me encargo de hacerla realidad: desde la grabación y edición, hasta crear el espacio digital perfecto para que tu audiencia conecte con tu mensaje.",
+        hero_btn_contact: "Contactarme",
+        hero_btn_portfolio: "Explorar Trabajos",
+        stats_videos: "Videos",
+        stats_response: "Respuesta",
+        section_services: "Servicios",
+        srv_1_title: "Producción y Edición de Video",
+        srv_1_desc: "Me encargo de todo el proceso: desde la grabación y dirección hasta convertir tus tomas en videos que la gente realmente quiere ver. Corto las partes aburridas, mejoro el color y dejo el audio impecable para que tu mensaje destaque.",
+        srv_2_title: "Contenido Digital",
+        srv_2_desc: "Creo las fotografías y las imágenes que tu marca necesita para verse profesional en internet. Hago que tus redes sociales llamen la atención correcta desde el primer vistazo.",
+        srv_3_title: "Web & Sistemas",
+        srv_3_desc: "Le doy a tu negocio su propia casa en internet. Armo páginas web modernas, seguras y súper fáciles de usar para que tus clientes te encuentren sin complicaciones.",
+        section_portfolio: "Mi Portafolio",
+        portfolio_desc: "Esta es solo una selección de algunos de mis proyectos. Aunque he editado y producido una gran cantidad de videos a lo largo de mi carrera que no están incluidos aquí, esta muestra sirve para ilustrar mi estilo, narrativa visual y enfoque técnico.",
+        tab_videos: "Videos Destacados",
+        tab_clients: "Clientes & Proyectos",
+        section_contact: "Hablemos de tu proyecto",
+        contact_wa: "Abrir WhatsApp",
+        contact_email: "Enviar Correo",
+        contact_discord: "Copiar Usuario",
+        footer: "&copy; 2026 ANUAR BENGUCHE | VALLE DE ÁNGELES, HONDURAS.",
+        dynamic_service: "Servicio",
+        dynamic_view_project: "Ver Proyecto",
+        dynamic_alert: "Usuario de Discord copiado: "
+      },
+      en: {
+        nav_services: "Services",
+        nav_portfolio: "Portfolio",
+        nav_contact: "Contact",
+        hero_title_1: "Video Producer &",
+        hero_title_2: "Editor",
+        hero_lead: "I help brands and entrepreneurs tell their stories through videos and websites that captivate from the very first second. If you have an idea, I make it a reality: from shooting and editing, to creating the perfect digital space for your audience to connect with your message.",
+        hero_btn_contact: "Contact Me",
+        hero_btn_portfolio: "Explore Work",
+        stats_videos: "Videos",
+        stats_response: "Response",
+        section_services: "Services",
+        srv_1_title: "Video Production & Editing",
+        srv_1_desc: "I handle the entire process: from shooting and directing to turning your footage into videos people actually want to watch. I cut the boring parts, enhance the color, and polish the audio so your message stands out.",
+        srv_2_title: "Digital Content",
+        srv_2_desc: "I create the photography and imagery your brand needs to look professional online. I make your social media grab the right attention from the very first glance.",
+        srv_3_title: "Web & Systems",
+        srv_3_desc: "I give your business its own home on the internet. I build modern, secure, and super easy-to-use websites so your clients can find you without hassle.",
+        section_portfolio: "My Portfolio",
+        portfolio_desc: "This is just a selection of some of my projects. Although I have edited and produced a vast amount of videos throughout my career that are not included here, this sample serves to illustrate my style, visual narrative, and technical approach.",
+        tab_videos: "Featured Videos",
+        tab_clients: "Clients & Projects",
+        section_contact: "Let's talk about your project",
+        contact_wa: "Open WhatsApp",
+        contact_email: "Send Email",
+        contact_discord: "Copy Username",
+        footer: "&copy; 2026 ANUAR BENGUCHE | VALLE DE ÁNGELES, HONDURAS.",
+        dynamic_service: "Service",
+        dynamic_view_project: "View Project",
+        dynamic_alert: "Discord username copied: "
+      }
+    };
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'es' ? 'en' : 'es';
+      document.getElementById('lang-toggle').innerText = currentLang === 'es' ? 'EN' : 'ES';
+      
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[currentLang][key]) {
+          el.innerHTML = translations[currentLang][key];
+        }
+      });
+
+      // Refrescar contenido dinámico para traducir botones internos
+      if (vData.length > 0) renderV(currentPageV);
+      if (currentRowsC.length > 0) renderC(currentRowsC);
+    }
 
     function toggleTab(id, btn) {
       document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
@@ -396,16 +477,17 @@
 
         const resC = await fetch(CLIENTES_URL);
         const csvC = await resC.text();
-        renderC(csvParse(csvC).slice(1));
+        currentRowsC = csvParse(csvC).slice(1);
+        renderC(currentRowsC);
       } catch (e) { console.error(e); }
     }
 
     function renderV(p) {
+      currentPageV = p;
       const container = document.getElementById('video-container');
       container.innerHTML = "";
       vData.slice((p-1)*LIMIT, p*LIMIT).forEach(v => {
         
-        // Lógica para determinar el texto de la etiqueta (Badge)
         let platformName = "Video";
         if (v.type === 'youtube') platformName = "YouTube";
         else if (v.type === 'instagram') platformName = "Instagram";
@@ -416,14 +498,11 @@
         let media = "";
         
         if (v.type === 'youtube') {
-          // YouTube: Mantiene formato 16:9 y se reproduce en la página, incluye etiqueta
           media = `<div class="media-container yt-thumb" style="background-image:url('https://i.ytimg.com/vi/${v.id}/maxresdefault.jpg')" onclick="this.innerHTML='<iframe src=\\'https://www.youtube.com/embed/${v.id}?autoplay=1\\' allow=\\'autoplay\\' allowfullscreen style=\\'width:100%;height:100%;border:0;aspect-ratio:16/9;\\'></iframe>'">
             ${badgeHtml}
           </div>`;
         } else {
-          // Redes Sociales: Mantiene formato compacto 320px, abre en otra pestaña, incluye etiqueta
           let bgStyle = v.thumb ? `background-image:url('${v.thumb}'); background-size: cover; background-position: center;` : `background-color: #0c0d10;`;
-          
           media = `<a href="${v.id}" target="_blank" class="media-container social-thumb" style="${bgStyle}">
             ${badgeHtml}
             <div class="play-btn">▶</div>
@@ -457,8 +536,8 @@
              <img src="${c[1] || 'Perfil.png.png'}" alt="Logo">
           </div>
           <h4>${c[0]}</h4>
-          <span>${c[2] || 'Servicio'}</span>
-          ${c[4] ? `<a href="${c[4]}" target="_blank" class="button small" style="min-height:30px; margin-top:15px;">Ver Proyecto</a>` : ''}
+          <span>${c[2] || translations[currentLang].dynamic_service}</span>
+          ${c[4] ? `<a href="${c[4]}" target="_blank" class="button small" style="min-height:30px; margin-top:15px;">${translations[currentLang].dynamic_view_project}</a>` : ''}
         </div>
       `).join('');
     }
@@ -466,7 +545,7 @@
     function copyDiscord() {
       const user = document.getElementById('discord-user').innerText;
       navigator.clipboard.writeText(user).then(() => {
-        alert("Usuario de Discord copiado: " + user);
+        alert(translations[currentLang].dynamic_alert + user);
       });
     }
 
