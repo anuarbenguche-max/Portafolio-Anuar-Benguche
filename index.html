@@ -296,11 +296,14 @@
     </section>
 
   </main>
-
-  <footer style="padding: 50px 0; text-align: center; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.85rem; font-weight: 600; letter-spacing: 1.5px;">
-  <footer style="border-top: 1px solid var(--line); padding: 26px 0; color: var(--muted); font-size: 0.85rem; letter-spacing: 1px;">
+<footer style="border-top: 1px solid var(--line); padding: 26px 0; color: var(--muted); font-size: 0.85rem; letter-spacing: 1px;">
   <div class="page">
-    <div style="display: flex; gap: 6px;">
+    <div style="display: flex; justify-content: center; align-items: center; gap: 12px; flex-wrap: wrap; text-transform: uppercase;">
+      <span>&copy; 2026 ANUAR BENGUCHE</span>
+      <span style="color: var(--line);">|</span>
+      <span>VALLE DE ÁNGELES, HONDURAS</span>
+      <span style="color: var(--line);">|</span>
+      <div style="display: flex; gap: 6px;">
         VISITAS: <span id="count" style="color: var(--accent); font-weight: 800;">...</span>
       </div>
     </div>
@@ -310,20 +313,15 @@
 <script>
   async function actualizarVisitas() {
     try {
-      // Reemplaza 'anuarbenguche.github.io' por tu usuario real si es necesario
       const res = await fetch('https://api.countapi.xyz/hit/anuarbenguche.github.io/visitas');
       const data = await res.json();
       document.getElementById('count').innerText = data.value.toLocaleString(); 
     } catch (error) {
-      // Valor por defecto en caso de error de conexión
       document.getElementById('count').innerText = "1,240+"; 
     }
   }
   actualizarVisitas();
 </script>
-    &copy; 2026 ANUAR BENGUCHE | VALLE DE ÁNGELES, HONDURAS.
-  </footer>
-
   <script>
     const VIDEOS_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQgCJoKmx5QdAm9Jz5NRt8QThDCVMtGu_cOUdBHe04h_qPIu49Ytwox57L48QmcVbF2822nE0RBO11J/pub?gid=665574915&single=true&output=csv";
     const CLIENTES_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQgCJoKmx5QdAm9Jz5NRt8QThDCVMtGu_cOUdBHe04h_qPIu49Ytwox57L48QmcVbF2822nE0RBO11J/pub?gid=262329438&single=true&output=csv";
