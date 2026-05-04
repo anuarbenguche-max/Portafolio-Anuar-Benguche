@@ -134,8 +134,62 @@
     .media-container { width: 100%; position: relative; background: #000; overflow: hidden; }
     .yt-thumb { aspect-ratio: 16/9; background-size: cover; background-position: center; cursor: pointer; display: flex; align-items: center; justify-content: center; }
     .yt-thumb::before { content: "▶"; width: 55px; height: 55px; background: rgba(0,0,0,0.85); border: 2px solid white; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; }
-    .social-container { height: 530px; }
-    .social-container iframe { width: 100%; height: 100%; border: 0; }
+    
+    /* Etiqueta flotante de red social (NUEVO) */
+    .platform-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(23, 24, 28, 0.85);
+      border: 1px solid var(--accent);
+      color: white;
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+      z-index: 10;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Miniaturas compactas de redes sociales */
+    .social-thumb {
+      height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    
+    /* Botón Play Premium y Animado */
+    .play-btn {
+      width: 65px;
+      height: 65px;
+      background: rgba(0,0,0,0.6);
+      border: 3px solid var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 24px;
+      font-weight: 900;
+      padding-left: 5px; /* Compensa visualmente la forma del triángulo */
+      box-shadow: 0 0 20px var(--accent-glow);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      z-index: 5;
+    }
+    
+    /* Efecto Hover aplicado al contenedor para animar el botón */
+    .media-container:hover .play-btn {
+      transform: scale(1.15);
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 0 35px var(--accent);
+    }
 
     .card-info { padding: 28px; }
     .card-info h3 { margin: 0 0 12px 0; font-size: 1.2rem; font-weight: 800; letter-spacing: 0.5px; }
@@ -333,8 +387,9 @@
       try {
         const resV = await fetch(VIDEOS_URL);
         const csvV = await resV.text();
+        
         vData = csvParse(csvV).slice(1).filter(r => r[1]).map(r => ({
-          type: r[0].toLowerCase(), id: r[1], title: r[2] || "Proyecto", desc: r[3] || ""
+          type: r[0].toLowerCase(), id: r[1], title: r[2] || "Proyecto", desc: r[3] || "", thumb: r[4] || ""
         }));
         renderV(1);
         document.getElementById('counter-display').innerText = vData.length + "+";
@@ -349,9 +404,31 @@
       const container = document.getElementById('video-container');
       container.innerHTML = "";
       vData.slice((p-1)*LIMIT, p*LIMIT).forEach(v => {
-        let media = v.type === 'youtube' 
-          ? `<div class="media-container yt-thumb" style="background-image:url('https://i.ytimg.com/vi/${v.id}/maxresdefault.jpg')" onclick="this.innerHTML='<iframe src=\'https://www.youtube.com/embed/${v.id}?autoplay=1\' allow=\'autoplay\' allowfullscreen style=\'width:100%;height:100%;border:0;aspect-ratio:16/9;\'></iframe>'"></div>`
-          : `<div class="media-container social-container"><iframe src="${v.id.includes('instagram.com') ? v.id.split('?')[0].replace(/\/+$/, '') + '/embed' : 'https://www.tiktok.com/embed/v2/'+v.id}" allowtransparency="true" scrolling="no" frameborder="0"></iframe></div>`;
+        
+        // Lógica para determinar el texto de la etiqueta (Badge)
+        let platformName = "Video";
+        if (v.type === 'youtube') platformName = "YouTube";
+        else if (v.type === 'instagram') platformName = "Instagram";
+        else if (v.type === 'tiktok') platformName = "TikTok";
+        else platformName = v.type.charAt(0).toUpperCase() + v.type.slice(1);
+
+        let badgeHtml = `<div class="platform-badge">${platformName}</div>`;
+        let media = "";
+        
+        if (v.type === 'youtube') {
+          // YouTube: Mantiene formato 16:9 y se reproduce en la página, incluye etiqueta
+          media = `<div class="media-container yt-thumb" style="background-image:url('https://i.ytimg.com/vi/${v.id}/maxresdefault.jpg')" onclick="this.innerHTML='<iframe src=\\'https://www.youtube.com/embed/${v.id}?autoplay=1\\' allow=\\'autoplay\\' allowfullscreen style=\\'width:100%;height:100%;border:0;aspect-ratio:16/9;\\'></iframe>'">
+            ${badgeHtml}
+          </div>`;
+        } else {
+          // Redes Sociales: Mantiene formato compacto 320px, abre en otra pestaña, incluye etiqueta
+          let bgStyle = v.thumb ? `background-image:url('${v.thumb}'); background-size: cover; background-position: center;` : `background-color: #0c0d10;`;
+          
+          media = `<a href="${v.id}" target="_blank" class="media-container social-thumb" style="${bgStyle}">
+            ${badgeHtml}
+            <div class="play-btn">▶</div>
+          </a>`;
+        }
         
         container.innerHTML += `<article class="card">${media}<div class="card-info"><h3>${v.title}</h3><p>${v.desc}</p></div></article>`;
       });
