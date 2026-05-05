@@ -1,4 +1,4 @@
-<!doctype html>
+}<!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8">
@@ -132,8 +132,6 @@
     .card:hover { border-color: var(--accent); transform: translateY(-7px); }
 
     .media-container { width: 100%; position: relative; background: #000; overflow: hidden; }
-    .yt-thumb { aspect-ratio: 16/9; background-size: cover; background-position: center; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-    .yt-thumb::before { content: "▶"; width: 55px; height: 55px; background: rgba(0,0,0,0.85); border: 2px solid white; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; }
     
     .platform-badge {
       position: absolute;
@@ -275,6 +273,7 @@
         <div style="display:flex; gap:15px; margin-bottom:45px; flex-wrap:wrap; justify-content: inherit;">
           <a href="#contacto" class="button" data-i18n="hero_btn_contact">Contactarme</a>
           <a href="#portafolio" class="button secondary" data-i18n="hero_btn_portfolio">Explorar Trabajos</a>
+          <a href="TU_ENLACE_DEL_CV_AQUI.pdf" target="_blank" class="button secondary" data-i18n="hero_btn_cv" style="border-color: rgba(255,255,255,0.2);">Descargar CV</a>
         </div>
         <div class="stats">
           <div class="stat"><strong id="counter-display">0+</strong><span data-i18n="stats_videos">Videos</span></div>
@@ -372,6 +371,7 @@
         hero_lead: "Ayudo a marcas y emprendedores a contar sus historias a través de videos y sitios web que atrapan desde el primer segundo. Si tienes una idea, yo me encargo de hacerla realidad: desde la grabación y edición, hasta crear el espacio digital perfecto para que tu audiencia conecte con tu mensaje.",
         hero_btn_contact: "Contactarme",
         hero_btn_portfolio: "Explorar Trabajos",
+        hero_btn_cv: "Descargar CV",
         stats_videos: "Videos",
         stats_response: "Respuesta",
         section_services: "Servicios",
@@ -403,6 +403,7 @@
         hero_lead: "I help brands and entrepreneurs tell their stories through videos and websites that captivate from the very first second. If you have an idea, I make it a reality: from shooting and editing, to creating the perfect digital space for your audience to connect with your message.",
         hero_btn_contact: "Contact Me",
         hero_btn_portfolio: "Explore Work",
+        hero_btn_cv: "Download CV",
         stats_videos: "Videos",
         stats_response: "Response",
         section_services: "Services",
@@ -438,7 +439,6 @@
         }
       });
 
-      // Refrescar contenido dinámico para traducir botones internos
       if (vData.length > 0) renderV(currentPageV);
       if (currentRowsC.length > 0) renderC(currentRowsC);
     }
@@ -469,8 +469,9 @@
         const resV = await fetch(VIDEOS_URL);
         const csvV = await resV.text();
         
+        // CORRECCIÓN: Ahora lee la 6ta columna (r[5]) para la foto subida manualmente
         vData = csvParse(csvV).slice(1).filter(r => r[1]).map(r => ({
-          type: r[0].toLowerCase(), id: r[1], title: r[2] || "Proyecto", desc: r[3] || "", thumb: r[4] || ""
+          type: r[0].toLowerCase(), id: r[1], title: r[2] || "Proyecto", desc: r[3] || "", thumb: r[5] || ""
         }));
         renderV(1);
         document.getElementById('counter-display').innerText = vData.length + "+";
@@ -498,11 +499,15 @@
         let media = "";
         
         if (v.type === 'youtube') {
-          media = `<div class="media-container yt-thumb" style="background-image:url('https://i.ytimg.com/vi/${v.id}/maxresdefault.jpg')" onclick="this.innerHTML='<iframe src=\\'https://www.youtube.com/embed/${v.id}?autoplay=1\\' allow=\\'autoplay\\' allowfullscreen style=\\'width:100%;height:100%;border:0;aspect-ratio:16/9;\\'></iframe>'">
+          // YouTube (Automático)
+          media = `<a href="https://www.youtube.com/watch?v=${v.id}" target="_blank" class="media-container social-thumb" style="background-image:url('https://i.ytimg.com/vi/${v.id}/maxresdefault.jpg'); background-size: cover; background-position: center;">
             ${badgeHtml}
-          </div>`;
+            <div class="play-btn">▶</div>
+          </a>`;
         } else {
+          // Redes Sociales - Usa la foto de la 6ta columna (r[5]) o cae en el fondo negro
           let bgStyle = v.thumb ? `background-image:url('${v.thumb}'); background-size: cover; background-position: center;` : `background-color: #0c0d10;`;
+          
           media = `<a href="${v.id}" target="_blank" class="media-container social-thumb" style="${bgStyle}">
             ${badgeHtml}
             <div class="play-btn">▶</div>
